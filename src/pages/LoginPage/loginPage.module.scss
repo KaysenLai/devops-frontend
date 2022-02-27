@@ -1,0 +1,81 @@
+@import '~assets/css/styles.scss';
+@import '~assets/css/variable.scss';
+
+.form {
+  margin: auto;
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  @include media(S) {
+    margin: auto 25px;
+    max-width: 900px;
+  }
+
+  .title {
+    margin-bottom: 20px;
+    display: none;
+    @include media(S) {
+      display: block;
+    }
+
+    h2 {
+      font-weight: 900;
+      margin: 0;
+      font-size: 36px;
+      line-height: 45px;
+    }
+
+    .line {
+      height: 7px;
+      width: 90px;
+      margin-top: 6px;
+      background-color: $primaryColor;
+    }
+  }
+
+  .decription {
+    font-weight: 900;
+    margin: 0;
+    font-size: 36px;
+    line-height: 45px;
+    margin-bottom: 30px;
+    @include media(S) {
+      font-size: 20px;
+      line-height: 22px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .input {
+    margin: 5px 0;
+    height: 60px;
+  }
+
+  .remember {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include media(S) {
+      margin-top: 0;
+    }
+
+    .forget {
+      text-decoration: none;
+    }
+  }
+
+  .button {
+    margin-top: 60px;
+  }
+
+  .signup {
+    text-align: center;
+    margin-top: 30px;
+    
+    .link {
+      text-decoration: none;
+    }
+  }
+}

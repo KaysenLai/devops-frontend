@@ -1,0 +1,57 @@
+@import '~assets/css/variable.scss';
+@import '~assets/css/styles.scss';
+
+.form {
+  margin: auto;
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  @include media(S) {
+    margin: auto 25px;
+    max-width: 900px;
+  }
+
+  .successIcon {
+    color: $successIconGreen;
+    height: 45px;
+    width: 45px;
+    @include media(S) {
+      height: 22px;
+      width: 22px;
+    }
+  }
+
+  .title {
+    margin: 0;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 45px;
+    display: inline-block;
+    @include media(S) {
+      font-size: 20px;
+      line-height: 22px;
+    }
+  }
+
+  .description {
+    margin: 20px 0;
+    @include media(S) {
+      font-size: 14px;
+      line-height: 20px;
+      margin: 10px 0;
+    }
+  }
+
+  .email {
+    margin-left: 5px;
+    display: inline-block;
+    @include media(S) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+}

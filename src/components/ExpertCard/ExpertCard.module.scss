@@ -1,0 +1,105 @@
+@import '~assets/css/styles.scss';
+@import '~assets/css/variable.scss';
+
+p {
+  margin: 3px 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+
+  .cardContentContainer {
+    padding-bottom: 10px;
+
+    .userInfoContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .userName {
+        font-size: 18px;
+        font-weight: 300;
+        margin: 2px 0;
+      }
+
+      .userJobTitle {
+        font-size: 14px;
+        font-weight: 200;
+        color: #6366aa;
+      }
+
+      .userLocation {
+        font-size: 12px;
+        font-weight: 200;
+        color: #afafaf;
+        .locationOnIcon {
+          height: 12px;
+          width: 12px;
+        }
+      }
+
+      .userPrice {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+      }
+    }
+
+    .divider {
+      margin: 6px 0;
+    }
+
+    .userMarkerplaceContainer {
+      display: flex;
+      justify-content: space-between;
+      p {
+        font-size: 12px;
+      }
+      .userMarketplaceValue {
+        color: #e36549;
+        margin-left: 14px;
+      }
+    }
+  }
+
+  .cardActionContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 16px 16px;
+    .button {
+      margin: 0 0 1px;
+      text-transform: none;
+      p {
+        font-weight: 100;
+        margin: 0 16px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  &:hover {
+    .cardContentContainer {
+      background-color: $hoverEffectColor;
+      p,
+      span,
+      .userJobTitle,
+      .userLocation,
+      .userMarketplaceValue {
+        color: $secondaryColor;
+      }
+    }
+    .divider {
+      background: $secondaryColor;
+    }
+    .cardActionContainer {
+      background-color: $hoverEffectColor;
+      .button {
+        background-color: $secondaryColor;
+        color: $primaryColor;
+      }
+    }
+  }
+}

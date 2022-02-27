@@ -1,0 +1,108 @@
+@import '~assets/css/styles.scss';
+@import '~assets/css/variable.scss';
+
+.container {
+  margin-top: 40px;
+
+  .imageContainer {
+    .image {
+      width: 100%;
+      border-radius: 12px;
+    }
+  }
+  
+  .informationContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .information {
+      display: flex;
+      flex-direction: column;
+      font-size: 24px;
+      @include media(S) {
+        font-size: 14px;
+      }
+
+      .name {
+        font-size: 36px;
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 20px;
+        @include media(S) {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .jobTitle {
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 20px;
+        color: $descriptionColor;
+        @include media(S) {
+          margin-bottom: 10px;
+        }
+      }
+
+      .location {
+        font-size: 18px;
+        margin: 0;
+        color: $locationColor;
+        margin-bottom: 20px;
+        @include media(S) {
+          font-size: 12px;
+          margin-bottom: 10px;
+        }
+
+        .locationOnIcon {
+          height: 15px;
+          width: 15px;
+        }
+      }
+      
+      .booking {
+        margin-bottom: 20px;
+        @include media(S) {
+          margin-bottom: 10px;
+        }
+
+        .bookingValue {
+          color: #e36549;
+          margin-left: 24px;
+        }
+      }
+
+      .price {
+        margin-bottom: 20px;
+        @include media(S) {
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .review {
+        margin-bottom: 40px;
+        @include media(S) {
+          margin-bottom: 20px;
+        }
+
+        .reviewValue {
+          color: #e36549;
+          margin-left: 24px;
+        }
+      }
+
+      .button {
+        height: 50px;
+        font-size: 18px;
+        border-radius: 10px;
+        @include media(S) {
+          height: 30px;
+          font-size: 14px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

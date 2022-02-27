@@ -1,0 +1,108 @@
+@import '~assets/css/variable.scss';
+@import '~assets/css/styles.scss';
+
+.container{
+  padding: 80px 0;
+  background-color: $primaryColor;
+
+  .linksWrap {
+    .links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 330px;
+      height: 100%;
+    }
+
+    .logo {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    .publics {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    
+    .copyRight {
+      margin-top: 30px;
+      color: #909090;
+      font-size: 16px;
+    }
+  }
+
+  .menu {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 330px;
+    margin: 0 auto;
+
+    @include media(S) {
+      margin-top: 20px;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .menuItem {
+      text-decoration: none;
+      color: $secondaryColor;
+    }
+  }
+
+  .informationWrap {
+    .information{
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      color: $secondaryColor;
+      display: flex;
+      max-width: 330px;
+      height: 100%;
+      
+      @include media(S) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        margin-top: 40px;
+      }
+
+      .subscribe {
+        display: flex;
+        width: 330px;
+        background-color: $secondaryColor;
+        margin-bottom: 50px;
+
+        .input {
+          width: 100%;
+          margin-left: 10px;
+          @include media(S) {
+            font-size: 12px;
+          }
+        }
+
+        .button {
+          width: 150px;
+          padding: 0;
+          background-color: $hoverEffectColor;
+          border-radius: 0;
+          color: $secondaryColor
+        }
+      }
+
+      .item {
+        margin-bottom: 25px;
+        
+        .value {
+          color: #909090;
+        }
+      }
+    }
+  }
+}

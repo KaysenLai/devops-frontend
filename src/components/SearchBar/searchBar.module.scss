@@ -1,0 +1,63 @@
+@import '~assets/css/variable.scss';
+@import '~assets/css/styles.scss';
+
+.searchbar {
+  display: flex;
+  overflow: hidden;
+  min-width: 230px;
+  height: 45px;
+  border-radius: 5px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1);
+
+  .input {
+    font-size: 18px;
+    width: 100%;
+    padding: 0 0 0 10px;
+    border: none;
+
+    &:focus {
+      outline: none;
+      }
+  }
+
+  .searchButton {
+    z-index: 1;
+    width: 50px;
+    padding: 0;
+    background: $primaryColor;
+    border-radius: 0;
+
+    &:hover {
+      background-color: $hoverEffectColor;
+    }
+    .icon {
+      color: $secondaryColor;
+    }
+  }
+}
+
+.suggestContainer {
+  width: 550px;
+  height: 120px;
+  overflow: scroll;
+  border-radius: 5px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  .item {
+    height: 21px;
+    padding: 10px;
+    background: $secondaryColor;
+    display: block;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $hoverEffectColor;
+    }
+  }
+}

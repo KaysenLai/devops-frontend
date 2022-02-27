@@ -1,0 +1,13 @@
+@import '~assets/css/variable.scss';
+
+.link {
+  text-decoration: none;
+  color: $primaryColor;
+  margin: 0 25px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  &:hover {
+    color: $hoverEffectColor;
+  }
+}
+

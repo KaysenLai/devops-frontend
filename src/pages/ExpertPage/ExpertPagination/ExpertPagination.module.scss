@@ -1,0 +1,10 @@
+.PaginationContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0 40px;
+
+  .button {
+    height: 32px;
+  }
+}
