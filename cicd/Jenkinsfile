@@ -13,7 +13,7 @@ pipeline {
         BUCKET_NAME = 's3://chaokai.me2'
         // GCS_BUCKET_NAME = 'gs://gcp.uat.goexperts.net'
         // GCS_CREDENTIAL = 'goexpert-gcs'
-        WORKSPACE_PATH = '/var/jenkins_home/workspace/devops-frontend/build' 
+        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend_main' 
     }
 
     options {
@@ -28,6 +28,7 @@ pipeline {
         stage('Install packages') {
             steps {
                 echo "Installing packages ..."
+                sh "node -v"
                 //Install the packages from package.json
                 sh 'npm install'
             }
