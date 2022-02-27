@@ -29,6 +29,7 @@ pipeline {
             steps {
                 echo "Installing packages ..."
                 sh "node -v"
+                sh 'sudo chown -R 113:121 "/.npm"'
                 //Install the packages from package.json
                 sh 'npm install'
             }
