@@ -51,14 +51,6 @@ pipeline {
                 sh 'pip3 install awscli --upgrade'
             }
         }
-        stage('Install AWS SDK') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-
-            }
-        }
         // stage('Deploy to UAT') {
         //     when {
         //         expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
