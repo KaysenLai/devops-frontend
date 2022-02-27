@@ -2,8 +2,6 @@ pipeline {
     agent {
         docker {
             image 'node:14.15.0'
-            args 'npm_config_cache=npm-cache'
-            args 'HOME=.'
         }
     }
 
@@ -31,7 +29,7 @@ pipeline {
             steps {
                 echo "Installing packages ..."
                 sh "node -v"
-                sh 'sudo chown -R 113:121 "/.npm"'
+                sh 'chown -R 113:121 "/.npm"'
                 //Install the packages from package.json
                 sh 'npm install'
             }
