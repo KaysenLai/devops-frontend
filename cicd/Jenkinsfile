@@ -6,13 +6,13 @@ pipeline {
     }
 
     environment {
-        ENVIRONMENT = 'uat'
+        ENVIRONMENT = 'production'
         BRANCH_UAT = 'main'
         S3_CREDENTIAL = 'S3'
         S3_REGION = 'ap-southeast-2'
-        BUCKET_NAME = 's3://www.uat.goexperts.net'
-        GCS_BUCKET_NAME = 'gs://gcp.uat.goexperts.net'
-        GCS_CREDENTIAL = 'goexpert-gcs'
+        BUCKET_NAME = 's3://chaokai.me2'
+        // GCS_BUCKET_NAME = 'gs://gcp.uat.goexperts.net'
+        // GCS_CREDENTIAL = 'goexpert-gcs'
         WORKSPACE_PATH = '/var/jenkins_home/workspace/devops-frontend/build' 
     }
 
@@ -51,27 +51,22 @@ pipeline {
                 sh 'pip3 install awscli --upgrade'
             }
         }
-        stage('Install GCP SDK') {
+        stage('Install AWS SDK') {
             when {
                 expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             }
             steps {
-                echo "Installing GCP SDK ..."
-                sh 'echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list'
-                sh 'curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -'
-                sh 'apt-get update && apt-get -y install google-cloud-sdk'
-            }
-        }
-        stage('Deploy to UAT') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-                deployToS3(ENVIRONMENT)
-                deployToGCS(ENVIRONMENT) 
 
             }
         }
+        // stage('Deploy to UAT') {
+        //     when {
+        //         expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+        //     }
+        //     steps {
+        //         deployToS3(ENVIRONMENT)
+        //     }
+        // }
     }
 
     post {
@@ -86,7 +81,7 @@ pipeline {
     }
 }
 
- def deployToS3(environment) {
+def deployToS3(environment) {
     echo 'Deploying to ' + environment + ' ...'
     withAWS(credentials: S3_CREDENTIAL, region: S3_REGION) {
         // Empty the UAT bucket
@@ -94,21 +89,5 @@ pipeline {
         // Copy the static files from workspace to the S3 bucket
         sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
     }
-}
-
-def deployToGCS(environment) {
-    echo 'Deploying to ' + environment + ' ...'
-    withCredentials([file(credentialsId:GCS_CREDENTIAL, variable: 'GC_KEY')]) {
-        sh 'gcloud auth activate-service-account --key-file $GC_KEY'
-        // Empty the DEV bucket
-        sh '''
-            if [  "\$(gsutil ls ${GCS_BUCKET_NAME})" ]; then
-                gsutil rm -r "${GCS_BUCKET_NAME}"/*
-            fi
-        '''
-        // Copy the static file from workspace to the GCS bucket
-        sh 'gsutil cp -r "${WORKSPACE_PATH}"/* "${GCS_BUCKET_NAME}"/'
-    }
-
 }
 
