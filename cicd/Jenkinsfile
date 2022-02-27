@@ -2,6 +2,8 @@ pipeline {
     agent {
         docker {
             image 'node:14.15.0'
+            args 'npm_config_cache=npm-cache'
+            args 'HOME=.'
         }
     }
 
