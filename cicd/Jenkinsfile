@@ -32,7 +32,7 @@ pipeline {
                 echo "Installing packages ..."
                 sh "node -v"
                 //Install the packages from package.json
-                sh 'npm install'
+                // sh 'npm install'
             }
         }
         stage('Build') {
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 echo "Building ..."
                 echo "Running job: ${env.JOB_NAME}\n Build: ${env.BUILD_ID} - ${env.BUILD_URL}\nPepeline: ${env.RUN_DISPLAY_URL}"
-                sh 'npm run build'
+                // sh 'npm run build'
             }
         }
 
@@ -55,7 +55,7 @@ pipeline {
             }
             steps {
                 echo "Installing AWS CLI ..."
-                sh 'apt update'
+                sh 'apt-get update'
                 sh 'apt install python3-pip -y'
                 sh 'pip3 install awscli --upgrade'
             }
