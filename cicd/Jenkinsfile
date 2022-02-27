@@ -26,21 +26,21 @@ pipeline {
     }
 
     stages {
-        stage('Install packages') {
-            steps {
-                echo "Installing packages ..."
-                sh "node -v"
-                //Install the packages from package.json
-                sh 'npm install'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo "Building ..."
-                echo "Running job: ${env.JOB_NAME}\n Build: ${env.BUILD_ID} - ${env.BUILD_URL}\nPepeline: ${env.RUN_DISPLAY_URL}"
-                sh 'npm run build'
-            }
-        }
+        // stage('Install packages') {
+        //     steps {
+        //         echo "Installing packages ..."
+        //         sh "node -v"
+        //         //Install the packages from package.json
+        //         sh 'npm install'
+        //     }
+        // }
+        // stage('Build') {
+        //     steps {
+        //         echo "Building ..."
+        //         echo "Running job: ${env.JOB_NAME}\n Build: ${env.BUILD_ID} - ${env.BUILD_URL}\nPepeline: ${env.RUN_DISPLAY_URL}"
+        //         sh 'npm run build'
+        //     }
+        // }
 
         stage('Install AWS CLI') {
             when {
@@ -49,7 +49,7 @@ pipeline {
             steps {
                 echo "Installing AWS CLI ..."
                 sh 'apt-get update'
-                sh 'apt install python3-pip -y'
+                sh 'sudo apt install python3-pip -y'
                 sh 'pip3 install awscli --upgrade'
             }
         }
@@ -66,11 +66,9 @@ pipeline {
     post {
         success {
             echo "WELL DONE!!"
-            bitbucketStatusNotify(buildState: 'SUCCESSFUL')
         }
         failure {
             echo "FAILED"
-            bitbucketStatusNotify(buildState: 'FAILED')
         }
     }
 }
