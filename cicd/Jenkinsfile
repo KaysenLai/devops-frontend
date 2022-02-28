@@ -6,7 +6,7 @@ pipeline {
         BRANCH_UAT = 'main'
         S3_CREDENTIAL = 'S3'
         S3_REGION = 'ap-southeast-2'
-        BUCKET_NAME = 's3://chaokai.me2'
+        BUCKET_NAME = 's3://fe.chaokai.me'
         WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend' 
     }
 
@@ -41,14 +41,17 @@ pipeline {
             }
         }
 
-        // stage('Deploy to UAT') {
-        //     when {
-        //         expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-        //     }
-        //     steps {
-        //         deployToS3(ENVIRONMENT)
-        //     }
-        // }
+        stage('Deploy to UAT') {
+            when {
+                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+            }
+            steps {
+                // Empty the UAT bucket
+                sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
+                // Copy the static files from workspace to the S3 bucket
+                sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
+            }
+        }
     }
 
     post {
@@ -58,16 +61,6 @@ pipeline {
         failure {
             echo "FAILED"
         }
-    }
-}
-
-def deployToS3(environment) {
-    echo 'Deploying to ' + environment + ' ...'
-    withAWS(credentials: S3_CREDENTIAL, region: S3_REGION) {
-        // Empty the UAT bucket
-        sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
-        // Copy the static files from workspace to the S3 bucket
-        sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
     }
 }
 
