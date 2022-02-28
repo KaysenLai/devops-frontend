@@ -7,9 +7,7 @@ pipeline {
         S3_CREDENTIAL = 'S3'
         S3_REGION = 'ap-southeast-2'
         BUCKET_NAME = 's3://chaokai.me2'
-        // GCS_BUCKET_NAME = 'gs://gcp.uat.goexperts.net'
-        // GCS_CREDENTIAL = 'goexpert-gcs'
-        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend_main' 
+        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend' 
     }
 
     options {
@@ -21,18 +19,18 @@ pipeline {
     }
 
     stages {
-        stage('Install packages') {
-            agent {
-                docker {
-                    image 'node:14.15.0'
-                    args '-e npm_config_cache=npm-cache -e HOME=.'
-                }
+        stage('Git checkout') {
+            steps{
+                // Get source code from a GitHub repository
+                git branch:'main', url:'https://github.com/KaysenLai/devops-frontend'
             }
+        }
+        stage('Install packages') {
             steps {
                 echo "Installing packages ..."
                 sh "node -v"
                 //Install the packages from package.json
-                // sh 'npm install'
+                sh 'npm install'
             }
         }
         stage('Build') {
@@ -45,21 +43,10 @@ pipeline {
             steps {
                 echo "Building ..."
                 echo "Running job: ${env.JOB_NAME}\n Build: ${env.BUILD_ID} - ${env.BUILD_URL}\nPepeline: ${env.RUN_DISPLAY_URL}"
-                // sh 'npm run build'
+                sh 'npm run build'
             }
         }
 
-        stage('Install AWS CLI') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-                echo "Installing AWS CLI ..."
-                sh 'sudo apt-get update'
-                sh 'sudo apt install python3-pip -y'
-                sh 'pip3 install awscli --upgrade'
-            }
-        }
         // stage('Deploy to UAT') {
         //     when {
         //         expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
@@ -84,7 +71,7 @@ def deployToS3(environment) {
     echo 'Deploying to ' + environment + ' ...'
     withAWS(credentials: S3_CREDENTIAL, region: S3_REGION) {
         // Empty the UAT bucket
-        sh 'aws s3 rm "${BUCKET_NAME}" --recursive' // ${BUCKET_NAME} is also fine
+        sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
         // Copy the static files from workspace to the S3 bucket
         sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
     }
