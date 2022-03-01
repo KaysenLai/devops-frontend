@@ -6,8 +6,8 @@ pipeline {
         BRANCH_UAT = 'main'
         S3_CREDENTIAL = 'c4f762e6-1d2c-4eb2-b1cd-dbfde597e2fb'
         S3_REGION = 'ap-southeast-2'
-        BUCKET_NAME = 's3://fe.chaokai.me'
-        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend/build' 
+        BUCKET_NAME = 's3://frontend.chaokai.me'
+        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend/build'
     }
 
     options {
