@@ -12,6 +12,18 @@ variable "hosted_zone_name" {
   description = "hosted_zone_name"
 }
 
+variable "AWS_ACCESS_KEY_ID" {
+  type        = string
+  default     = ""
+  description = "AWS access key ID"
+}
+
+variable "AWS_SECRET_ACCESS_KEY" {
+  type        = string
+  default     = ""
+  description = "AWS secret access key"
+}
+
 variable "common_tags" {
   description = "Common tags you want applied to all components."
 }
