@@ -8,7 +8,7 @@ pipeline {
         AWS_CREDENTIAL = 'e2832236-c4ba-4733-95cf-d2808cdbb184'
         S3_REGION = 'ap-southeast-2'
         BUCKET_NAME = 's3://frontend.chaokai.me'
-        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend/build'
+        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend_main/build'
     }
 
     options {
