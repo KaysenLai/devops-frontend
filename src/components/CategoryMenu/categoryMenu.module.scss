@@ -1,0 +1,165 @@
+@import "~assets/css/variable.scss";
+@import "~assets/css/styles.scss";
+
+.desktopContainer {
+  @include media(S) {
+    display: none;
+  }
+
+  .wrapper {
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 90px;
+
+    .navbar {
+      margin: 20px 0 0;
+
+      .navitem {
+        float: left;
+        padding: 0 0 20px;
+        box-sizing: border-box;
+
+        button {
+          float: left;
+          font-size: 16px;
+          line-height: 25px;
+          letter-spacing: 0.065em;
+          color: rgb(0, 0, 0);
+          background-color: #fff;
+          cursor: pointer;
+        }
+
+        .navbtn {
+          font-size: 20px;
+          border: none;
+          padding: 0 20px;
+          border-left: 1px solid #d5d5d5;
+        }
+
+        .activebtn {
+          color: #69b1bb;
+        }
+
+        .icon {
+          display: none;
+        }
+
+        &:first-child {
+          .navbtn {
+            border-left: none;
+          }
+        }
+
+        &:hover {
+          padding-bottom: 17px;
+          border-bottom: 3px solid #69b1bb;
+
+          .navbtn {
+            color: #69b1bb;
+          }
+
+          .subcontent {
+            display: flex;
+            justify-content: center;
+            margin-top: 45px;
+            box-shadow: 0 4px 12px 1px rgba(151, 151, 181, 0.25);
+          }
+        }
+
+        .subcontent {
+          display: none;
+          position: absolute;
+          left: 0;
+          margin-top: 49px;
+          width: 100%;
+          z-index: 1;
+
+          button {
+            margin: 15px 15px 15px 0;
+            padding-left: 20px;
+            color: #6c6c6c;
+            border: none;
+            border-left: 1px solid #d5d5d5;
+
+            &:hover {
+              color: #69b1bb;
+            }
+
+            &:first-child {
+              border-left: none;
+            }
+          }
+
+          .activesub {
+            color: #69b1bb;
+          }
+
+          &:active {
+            display: flex;
+            justify-content: center;
+            margin-top: 45px;
+            box-shadow: 0 4px 12px 1px rgba(151, 151, 181, 0.25);
+          }
+        }
+
+        .staysub {
+          display: flex;
+          justify-content: center;
+          margin-top: 45px;
+          box-shadow: 0 4px 12px 1px rgba(151, 151, 181, 0.25);
+        }
+      }
+
+      .activeitem {
+        padding-bottom: 17px;
+        border-bottom: 3px solid #69b1bb;
+      }
+    }
+  }
+}
+
+.mobileContainer {
+  display: none;
+  @include media(S) {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  :global {
+    .MuiPaper-root {
+      box-shadow: none;
+      background-color: #fff;
+
+      .MuiToolbar-root {
+        justify-content: center;
+        align-items: flex-end;
+
+        .MuiButtonBase-root {
+          margin: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .toolBar {
+    background-color: $secondaryColor;
+
+    p {
+      font-size: 18px;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+  }
+
+  .sidemenu {
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    background-color: $secondaryColor;
+  }
+}

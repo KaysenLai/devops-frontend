@@ -1,0 +1,76 @@
+@import "~assets/css/variable.scss";
+@import "~assets/css/styles.scss";
+
+.card {
+  width: 900px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #c4c4c4;
+  display: flex;
+  justify-content: center;
+  :global {
+    .MuiGrid-root {
+      margin-top: 10px;
+      padding-left: 100px;
+    }
+
+    .MuiAvatar-root {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .name {
+    font-weight: bold;
+    font-size: 22px;
+    .firstName {
+      display: inline-block;
+    }
+    .lastName {
+      margin-left: 10px;
+      display: inline-block;
+    }
+  }
+
+  .jobTitle {
+    font-size: 22px;
+    color: #6366aa;
+    margin-top: 5px;
+  }
+
+  .details {
+    font-size: 16px;
+    position: relative;
+    margin-top: 5px;
+    .title {
+      display: inline-block;
+    }
+
+    .info {
+      color: #838383;
+      display: inline-block;
+      position: absolute;
+      left: 150px;
+      top: 0;
+
+      .status {
+        color: #d87b26;
+      }
+    }
+  }
+
+  .button {
+    margin: 0 0 1px;
+    text-transform: none;
+    margin-top: 130px;
+    p {
+      font-weight: 100;
+      margin: 0 25px;
+      font-size: 18px;
+    }
+
+    &:hover {
+      background-color: $secondaryColor;
+      color: $primaryColor;
+    }
+  }
+}

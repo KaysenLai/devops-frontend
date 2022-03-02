@@ -1,0 +1,53 @@
+@import '~assets/css/styles.scss';
+
+.wrapper {
+  height: 100vh;
+
+  .information {
+    background-image: url('~assets/images/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    
+    @include media(S) {
+      display: none;
+    }
+    
+    .title {
+      margin: 0 auto;
+      color: #fff;
+      position: relative;
+
+      h2 {
+        font-weight: 900;
+        margin: 0;
+        font-size: 64px;
+        line-height: 80px;
+      }
+
+      .line {
+        height: 12px;
+        width: 140px;
+        margin-top: 12px;
+        background-color: #fff;
+      }
+    }
+  }
+  
+  .children {
+    display: flex;
+
+    .content {
+      display: flex;
+      width: 100%;
+      @include media(S) {
+        background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('~assets/images/background.jpg') no-repeat 0% 20%/ cover;
+      }
+    }
+  }
+}
+

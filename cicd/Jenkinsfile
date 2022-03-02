@@ -4,6 +4,7 @@ pipeline {
     environment {
         ENVIRONMENT = 'production'
         BRANCH_UAT = 'main'
+        CLOUDFRONT_DISTRIBUTION_ID = 'E32EHF854UJCK1'
         S3_CREDENTIAL = 'c4f762e6-1d2c-4eb2-b1cd-dbfde597e2fb'
         S3_REGION = 'ap-southeast-2'
         BUCKET_NAME = 's3://frontend.chaokai.me'
@@ -52,7 +53,7 @@ pipeline {
                     sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
                     // Copy the static files from workspace to the S3 bucket
                     sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
-                    sh "aws cloudfront create-invalidation --distribution-id E32EHF854UJCK1--paths '/'"
+                    sh 'aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths "/"'
                 }
             }
         }

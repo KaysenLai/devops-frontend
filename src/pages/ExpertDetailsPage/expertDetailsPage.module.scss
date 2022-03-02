@@ -1,0 +1,17 @@
+@import '~assets/css/styles.scss';
+@import '~assets/css/variable.scss';
+
+.container {
+  margin-top: 70px;
+  @include media(S) {
+    margin-top: 30px;
+  }
+
+  .title {
+    margin: 0;
+    display: none;
+    @include media(S) {
+      display: block;
+    }
+  }
+}

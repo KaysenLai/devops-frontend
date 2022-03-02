@@ -1,0 +1,20 @@
+@import '~assets/css/variable.scss';
+
+.container {
+  display: flex;
+  :global {
+    .MuiTabs-root {
+      width: 300px;
+
+      .MuiTab-root {
+        align-items: flex-end;
+        text-transform: capitalize;
+        font-size: 18px;
+        line-height: 30px;
+      }
+      .Mui-selected {
+        color: $hoverEffectColor;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.expertsDisplayBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .expertBox {
+    margin: 10px 5px;
+  }
+}
