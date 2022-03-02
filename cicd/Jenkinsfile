@@ -48,7 +48,7 @@ pipeline {
             }
             steps {
                 echo 'Deploying to ' + environment + ' ...'
-                withAWS(credentials: AWS_CREDENTIAL, region: S3_REGION) {
+                withAWS(credentials: "${AWS_CREDENTIAL}", region: "${S3_REGION}") {
                     // Empty the UAT bucket
                     sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
                     // Copy the static files from workspace to the S3 bucket
