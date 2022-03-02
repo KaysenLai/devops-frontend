@@ -41,7 +41,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to UAT') {
+        stage('Deploy to s3') {
             when {
                 expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             }
@@ -52,6 +52,7 @@ pipeline {
                     sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
                     // Copy the static files from workspace to the S3 bucket
                     sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
+                    sh "aws cloudfront create-invalidation --distribution-id E32EHF854UJCK1--paths '/'"
                 }
             }
         }
