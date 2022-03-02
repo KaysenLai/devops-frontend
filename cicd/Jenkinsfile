@@ -5,7 +5,7 @@ pipeline {
         ENVIRONMENT = 'production'
         BRANCH_UAT = 'main'
         CLOUDFRONT_DISTRIBUTION_ID = 'E32EHF854UJCK1'
-        S3_CREDENTIAL = 'c4f762e6-1d2c-4eb2-b1cd-dbfde597e2fb'
+        AWS_CREDENTIAL = 'e2832236-c4ba-4733-95cf-d2808cdbb184'
         S3_REGION = 'ap-southeast-2'
         BUCKET_NAME = 's3://frontend.chaokai.me'
         WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend/build'
@@ -48,7 +48,7 @@ pipeline {
             }
             steps {
                 echo 'Deploying to ' + environment + ' ...'
-                withAWS(credentials: S3_CREDENTIAL, region: S3_REGION) {
+                withAWS(credentials: AWS_CREDENTIAL, region: S3_REGION) {
                     // Empty the UAT bucket
                     sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
                     // Copy the static files from workspace to the S3 bucket
