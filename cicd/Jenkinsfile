@@ -49,10 +49,7 @@ pipeline {
             steps {
                 echo 'Deploying to ' + environment + ' ...'
                 withAWS(credentials: AWS_CREDENTIAL, region: S3_REGION) {
-                    // Empty the UAT bucket
-                    sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
-                    // Copy the static files from workspace to the S3 bucket
-                    sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
+                    sh 'aws s3 sync "${WORKSPACE_PATH}" "${BUCKET_NAME}"'
                     sh 'aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths "/"'
                 }
             }
