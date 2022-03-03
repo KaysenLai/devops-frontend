@@ -5,10 +5,10 @@ pipeline {
         ENVIRONMENT = 'production'
         BRANCH_UAT = 'main'
         CLOUDFRONT_DISTRIBUTION_ID = 'E32EHF854UJCK1'
-        AWS_CREDENTIAL = 'bbc52288-506d-465d-9873-95e2cbd0574d'
+        AWS_CREDENTIAL = '88ed7967-af88-4947-ba34-cd6028ad7d08'
         S3_REGION = 'ap-southeast-2'
         BUCKET_NAME = 's3://frontend.chaokai.me'
-        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend_main/build'
+        WORKSPACE_PATH = '/var/lib/jenkins/workspace/devops-frontend/build'
     }
 
     options {
